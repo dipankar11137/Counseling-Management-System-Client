@@ -55,8 +55,8 @@ const CreateAccount = () => {
 
   const onSubmit = (data) => {
     const image = data.image[0];
-    // createUserWithEmailAndPassword(data.email, data.password);
-    // updateProfile({ displayName: data.name });
+    createUserWithEmailAndPassword(data.email, data.password);
+    updateProfile({ displayName: data.name });
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
@@ -70,12 +70,12 @@ const CreateAccount = () => {
         const image = imageData.data.url;
         createDBUser(data.name, data.email, data.iId, image);
         toast.success("Updated profile");
-        // navigate("/");
+        navigate("/");
       });
 
     // createDBUser(data.name, data.email, data.iId);
     // toast.success("Updated profile");
-    // // navigate("/");
+    // navigate("/");
   };
   return (
     <div className="flex justify-center  bg-slate-700">
