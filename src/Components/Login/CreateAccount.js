@@ -57,9 +57,25 @@ const CreateAccount = () => {
     const image = data.image[0];
     // createUserWithEmailAndPassword(data.email, data.password);
     // updateProfile({ displayName: data.name });
-    createDBUser(data.name, data.email, data.iId);
-    toast.success("Updated profile");
-    // navigate("/");
+    const formData = new FormData();
+    formData.append("image", image);
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const image = imageData.data.url;
+        createDBUser(data.name, data.email, data.iId, image);
+        toast.success("Updated profile");
+        navigate("/");
+      });
+
+    // createDBUser(data.name, data.email, data.iId);
+    // toast.success("Updated profile");
+    // // navigate("/");
   };
   return (
     <div className="flex justify-center  bg-slate-700">
