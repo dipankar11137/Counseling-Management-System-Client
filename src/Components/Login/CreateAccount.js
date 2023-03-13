@@ -38,7 +38,7 @@ const CreateAccount = () => {
 
   const createDBUser = (name, email, iId, image) => {
     const profile = { name, email, iId, role, image };
-    console.log(profile);
+    // console.log(profile);
 
     fetch(`http://localhost:5000/create-user/${email}`, {
       method: "PUT",
