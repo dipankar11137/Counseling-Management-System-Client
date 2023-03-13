@@ -36,8 +36,8 @@ const CreateAccount = () => {
     navigate("/");
   }
 
-  const createDBUser = (name, email, iId) => {
-    const profile = { name, email, iId, role };
+  const createDBUser = (name, email, iId, image) => {
+    const profile = { name, email, iId, role, image };
     console.log(profile);
 
     fetch(`http://localhost:5000/create-user/${email}`, {
@@ -70,7 +70,7 @@ const CreateAccount = () => {
         const image = imageData.data.url;
         createDBUser(data.name, data.email, data.iId, image);
         toast.success("Updated profile");
-        navigate("/");
+        // navigate("/");
       });
 
     // createDBUser(data.name, data.email, data.iId);
@@ -216,6 +216,30 @@ const CreateAccount = () => {
                   </label>
                 </div>
               )}
+              {/* Image */}
+              <div className="form-control w-full ">
+                <label className="label">
+                  <span className="label-text">Your Image</span>
+                </label>
+                <input
+                  type="file"
+                  placeholder="Your Image"
+                  className="input input-bordered bg-white w-96 pt-2 sm:w-full   hover:shadow-xl shadow-inner"
+                  {...register("image", {
+                    required: {
+                      value: true,
+                      message: "Image is Required",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.image?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.image?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
               {/* password */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
