@@ -20,6 +20,7 @@ const CreateAccount = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const imageHostKey = "39899c0cdbfbe66a2dbde3818a91832c";
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -53,11 +54,12 @@ const CreateAccount = () => {
   };
 
   const onSubmit = (data) => {
+    const image = data.image[0];
     // createUserWithEmailAndPassword(data.email, data.password);
     // updateProfile({ displayName: data.name });
     createDBUser(data.name, data.email, data.iId);
     toast.success("Updated profile");
-    navigate("/");
+    // navigate("/");
   };
   return (
     <div className="flex justify-center  bg-slate-700">
