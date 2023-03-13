@@ -219,7 +219,7 @@ const CreateAccount = () => {
               {/* Image */}
               <div className="form-control w-full ">
                 <label className="label">
-                  <span className="label-text">Your Image</span>
+                  <span className="label-text">Input Your Image </span>
                 </label>
                 <input
                   type="file"
