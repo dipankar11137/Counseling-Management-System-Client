@@ -57,7 +57,7 @@ const CreateAccount = () => {
     // updateProfile({ displayName: data.name });
     createDBUser(data.name, data.email, data.iId);
     toast.success("Updated profile");
-    // navigate("/");
+    navigate("/");
   };
   return (
     <div className="flex justify-center  bg-slate-700">
