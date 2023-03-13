@@ -39,24 +39,24 @@ const CreateAccount = () => {
     const profile = { name, email, iId, role };
     console.log(profile);
 
-    // fetch(`https://boxberry.onrender.com/create-user/${email}`, {
-    //   method: "PUT",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({ name, email }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
+    fetch(`http://localhost:5000/create-user/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   const onSubmit = (data) => {
     // createUserWithEmailAndPassword(data.email, data.password);
     // updateProfile({ displayName: data.name });
     createDBUser(data.name, data.email, data.iId);
-    // toast.success("Updated profile");
+    toast.success("Updated profile");
     // navigate("/");
   };
   return (
