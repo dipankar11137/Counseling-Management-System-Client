@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,6 +12,8 @@ import auth from "../../firebase.init";
 import login from "../../Images/Login/login.jpg";
 
 const CreateAccount = () => {
+  const [role, setRole] = useState("Student");
+  console.log(role);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
@@ -33,7 +35,10 @@ const CreateAccount = () => {
     navigate("/");
   }
 
-  const createDBUser = (name, email) => {
+  const createDBUser = (name, email, iId) => {
+    const profile = { name, email, iId, role };
+    console.log(profile);
+
     // fetch(`https://boxberry.onrender.com/create-user/${email}`, {
     //   method: "PUT",
     //   headers: {
@@ -48,27 +53,38 @@ const CreateAccount = () => {
   };
 
   const onSubmit = (data) => {
-    // console.log(data.email, data.password, data.name);
-    createUserWithEmailAndPassword(data.email, data.password);
-    updateProfile({ displayName: data.name });
-    createDBUser(data.name, data.email);
-    toast.success("Updated profile");
-    navigate("/");
+    // createUserWithEmailAndPassword(data.email, data.password);
+    // updateProfile({ displayName: data.name });
+    createDBUser(data.name, data.email, data.iId);
+    // toast.success("Updated profile");
+    // navigate("/");
   };
   return (
-    <div className="flex justify-center h-screen bg-slate-700">
+    <div className="flex justify-center  bg-slate-700">
       <div className="w-4/12 pt-40">
         <img className="w-11/12 rounded-xl" src={login} alt="" />
       </div>
-      <div className="flex h-screen justify-center items-center  ">
+      <div className="flex mt-5 mb-10 justify-center items-center  ">
         <div className="card w-96 shadow-xl bg-violet-50">
-          <div className="card-body">
+          <div className="card-body ">
             <h2 className="text-center text-2xl font-bold">SignUp</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Teacher Or student */}
+              <select
+                onChange={(e) => setRole(e.target.value)}
+                className="select select-info w-full max-w-xs"
+              >
+                <option disabled selected>
+                  Student
+                </option>
+                <option>Teacher</option>
+                <option>Student</option>
+              </select>
+              {/* name */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text ">Name</span>
                 </label>
                 <input
                   type="text"
@@ -89,6 +105,7 @@ const CreateAccount = () => {
                   )}
                 </label>
               </div>
+              {/* Email */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -121,6 +138,67 @@ const CreateAccount = () => {
                   )}
                 </label>
               </div>
+              {/* Id */}
+              {role === "Student" ? (
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Student Id</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Enter Your Student ID"
+                    className="input input-bordered bg-white w-full max-w-xs"
+                    {...register("iId", {
+                      required: {
+                        value: true,
+                        message: "ID is Required",
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.iId?.type === "required" && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.iId.message}
+                      </span>
+                    )}
+                    {errors.iId?.type === "minLength" && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.iId.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+              ) : (
+                <div className="form-control w-full max-w-xs">
+                  <label className="label">
+                    <span className="label-text">Teacher Id</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Enter Your Teachers ID"
+                    className="input input-bordered bg-white w-full max-w-xs"
+                    {...register("iId", {
+                      required: {
+                        value: true,
+                        message: "ID is Required",
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.iId?.type === "required" && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.iId.message}
+                      </span>
+                    )}
+                    {errors.iId?.type === "minLength" && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.iId.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+              )}
+              {/* password */}
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -133,10 +211,6 @@ const CreateAccount = () => {
                     required: {
                       value: true,
                       message: "Password is Required",
-                    },
-                    minLength: {
-                      value: 6,
-                      message: "Must be 6 characters or longer",
                     },
                   })}
                 />
@@ -168,13 +242,6 @@ const CreateAccount = () => {
                 </Link>
               </small>
             </p>
-            <div className="divider">OR</div>
-            <button
-              onClick={() => signInWithGoogle()}
-              className="btn btn-outline font-black bg-orange-600 text-white"
-            >
-              Continue With Google
-            </button>
           </div>
         </div>
       </div>

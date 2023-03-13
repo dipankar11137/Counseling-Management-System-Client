@@ -12,8 +12,9 @@ import NotFound from "./Components/Share/NotFound";
 function App() {
   return (
     <div>
-      {/* <CreateAccount /> */}
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <Navbar />
+      </div>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/createAccount" element={<CreateAccount />}></Route>
