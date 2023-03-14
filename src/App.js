@@ -8,6 +8,7 @@ import Navbar from "./Components/Share/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NotFound from "./Components/Share/NotFound";
+import Appointment from "./Components/Pages/Appointment/Appointment/Appointment";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/appointment" element={<Appointment />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
       </Routes>
       <Footer />

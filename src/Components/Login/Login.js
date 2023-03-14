@@ -43,16 +43,8 @@ const Login = () => {
     );
   }
   const onSubmit = async (data) => {
-    const email = data.email;
     await signInWithEmailAndPassword(data.email, data.password);
     toast.success("Successfully Login");
-    // const { accessToken } = await axios.post(
-    //   "https://boxberry.onrender.com/login",
-    //   {
-    //     email,
-    //   }
-    // );
-    // console.log(accessToken);
   };
 
   return (
@@ -145,13 +137,6 @@ const Login = () => {
                 </Link>
               </small>
             </p>
-            <div className="divider">OR</div>
-            <button
-              onClick={() => signInWithGoogle()}
-              className="btn btn-outline font-black"
-            >
-              Continue With Google
-            </button>
           </div>
         </div>
       </div>
