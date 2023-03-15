@@ -12,6 +12,7 @@ const AppointmentOption = ({ option, setCounseling }) => {
         </p>
         <div className="card-actions justify-center">
           <label
+            disabled={slots.length === 0}
             onClick={() => setCounseling(option)}
             htmlFor="booking-modal"
             className="btn btn-primary text-white"

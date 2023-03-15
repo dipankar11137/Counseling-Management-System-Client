@@ -30,6 +30,7 @@ const AvailableAppointment = ({ selectDate }) => {
           key={counseling?._id}
           counseling={counseling}
           selectDate={selectDate}
+          setCounseling={setCounseling}
         />
       )}
     </section>
