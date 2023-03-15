@@ -25,7 +25,13 @@ const AvailableAppointment = ({ selectDate }) => {
           ></AppointmentOption>
         ))}
       </div>
-      <BookingModal />
+      {counseling && (
+        <BookingModal
+          key={counseling?._id}
+          counseling={counseling}
+          selectDate={selectDate}
+        />
+      )}
     </section>
   );
 };
