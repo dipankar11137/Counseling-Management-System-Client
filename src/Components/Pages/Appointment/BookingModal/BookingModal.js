@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React from "react";
+import { toast } from "react-toastify";
 
 const BookingModal = ({ counseling, selectDate, setCounseling }) => {
   const date = format(selectDate, "PP");
@@ -13,7 +14,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling }) => {
     const email = form.email.value;
     const phone = form.phone.value;
 
-    const update = {
+    const booking = {
       appointmentDate: date,
       slot,
       teacherName: name,
@@ -21,8 +22,21 @@ const BookingModal = ({ counseling, selectDate, setCounseling }) => {
       email,
       phone,
     };
-    console.log(update);
-    setCounseling(null);
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.acknowledged) {
+          setCounseling(null);
+          toast.success("Booking Confirmed");
+        }
+      });
   };
 
   return (
