@@ -1,16 +1,22 @@
+import { useQueries } from "@tanstack/react-query";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import BookingModal from "../BookingModal/BookingModal";
 import AppointmentOption from "./AppointmentOption";
 
 const AvailableAppointment = ({ selectDate }) => {
-  const [appointmentOptions, setAppointmentOptions] = useState([]);
+  // const [appointmentOptions, setAppointmentOptions] = useState([]);
   const [counseling, setCounseling] = useState(null);
-  useEffect(() => {
-    fetch("services.json")
-      .then((res) => res.json())
-      .then((data) => setAppointmentOptions(data));
-  }, []);
+
+  const { data: appointmentOptions = [], isLoading } = useQueries({
+    queryKey: ["appointmentOptions"],
+    queryFn: () => fetch("services.json").then((res) => res.json()),
+  });
+  // useEffect(() => {
+  //   fetch("services.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setAppointmentOptions(data));
+  // }, []);
   return (
     <section className="mt-6">
       <p className="text-xl text-center mt-10 text-green-900 font-semibold">
