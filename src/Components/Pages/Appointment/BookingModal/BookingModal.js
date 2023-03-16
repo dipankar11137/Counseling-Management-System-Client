@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import React from "react";
 import { toast } from "react-toastify";
 
-const BookingModal = ({ counseling, selectDate, setCounseling }) => {
+const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
   const date = format(selectDate, "PP");
   const { name, slots } = counseling;
 
@@ -35,6 +35,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling }) => {
         if (data?.acknowledged) {
           setCounseling(null);
           toast.success("Booking Confirmed");
+          refetch();
         }
       });
   };
