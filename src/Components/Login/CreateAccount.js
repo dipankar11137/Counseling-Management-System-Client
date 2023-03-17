@@ -78,12 +78,12 @@ const CreateAccount = () => {
     // navigate("/");
   };
   return (
-    <div className="flex justify-center  bg-slate-700">
+    <div className="flex justify-center  bg-slate-300">
       <div className="w-4/12 pt-40">
         <img className="w-11/12 rounded-xl" src={login} alt="" />
       </div>
       <div className="flex mt-5 mb-10 justify-center items-center  ">
-        <div className="card w-96 shadow-xl bg-violet-50">
+        <div className="card w-full shadow-xl bg-violet-50">
           <div className="card-body ">
             <h2 className="text-center text-2xl font-bold">SignUp</h2>
 
