@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import User from "../../Hooks/User";
 
 const CheckBoxTest = () => {
   // const [isChecked, setIsChecked] = useState(false);
@@ -10,7 +11,11 @@ const CheckBoxTest = () => {
   //   const slot3 = event.target.slot3.value;
 
   // };
-  const [values, setValues] = useState(["", ""]);
+  const [values, setValues] = useState(["helo"]);
+  const [value, setValue] = useState(["apu"]);
+  const [valuess, setValuess] = useState([]);
+  const [user] = User();
+  console.log("Use ", user);
 
   const handleChange = (index, event) => {
     const newValues = [...values];
@@ -19,17 +24,20 @@ const CheckBoxTest = () => {
     setValues(newValues);
   };
 
+  const helo = [...value, ...valuess, ...values];
+  // console.log(helo);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted values:", values);
+    // console.log("Submitted values:", values);
   };
   return (
     <div>
-      <input
+      {/* <input
         onChange={(event) => handleChange()}
         type="number"
         className="border-4"
-      />
+      /> */}
       <form onSubmit={handleSubmit}>
         {values.map((value, index) => (
           <input
@@ -40,6 +48,11 @@ const CheckBoxTest = () => {
             onChange={(event) => handleChange(index, event)}
           />
         ))}
+
+        <input
+          type="text"
+          onSubmit={(event) => setValuess([event.target.value])}
+        />
         <button type="submit">Submit</button>
       </form>
       {/* <div>
