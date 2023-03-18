@@ -22,10 +22,14 @@ const AppointmentOption = ({ option, setCounseling }) => {
         <h2 className="text-xl">Department : Department of CSE </h2>
 
         <p className="text-xl font-bold text-blue-600 text-center">
-          {slots.length > 0 ? slots[0] : "Try Another Day"}
+          {slots.length > 0 ? (
+            slots[0]
+          ) : (
+            <span className="text-red-500">Try Another Day</span>
+          )}
         </p>
         <p className="text-lg text-green-900 font-semibold text-center">
-          {slots.length} {slots.length > 1 ? "spaces" : "space"} Available
+          {slots.length} {slots.length > 1 ? "spaces" : "space"}
         </p>
         <div className="card-actions justify-center">
           <label

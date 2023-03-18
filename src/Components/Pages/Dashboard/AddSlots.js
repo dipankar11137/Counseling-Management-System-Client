@@ -11,12 +11,13 @@ const AddSlots = () => {
     reset,
   } = useForm();
   const [user] = User();
-  console.log(user);
+  //   console.log(user);
 
   const onSubmit = (data) => {
     const name = user?.name;
+    const email = user?.email;
     const slots = [data.slot1, data.slot2, data.slot3, data.slot4];
-    const updateData = { name, slots, user };
+    const updateData = { name, email, slots, user };
 
     const url = `http://localhost:5000/appointments`;
     fetch(url, {
@@ -31,7 +32,7 @@ const AddSlots = () => {
         toast.success("Successfully Add This Products");
         reset();
       });
-    console.log(updateData);
+    // console.log(updateData);
   };
   return (
     <div className=" pb-20 mx-20">
