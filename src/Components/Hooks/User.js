@@ -6,6 +6,7 @@ const User = () => {
   const [users] = useAuthState(auth);
   const email = users?.email;
   const [getUser, setGetUser] = useState([]);
+  console.log(getUser);
 
   useEffect(() => {
     if (email) {

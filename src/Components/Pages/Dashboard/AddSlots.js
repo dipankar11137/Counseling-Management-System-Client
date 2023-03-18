@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import User from "../../Hooks/User";
 
 const AddSlots = () => {
@@ -10,11 +11,26 @@ const AddSlots = () => {
     reset,
   } = useForm();
   const [user] = User();
+  console.log(user);
 
   const onSubmit = (data) => {
     const name = user?.name;
     const slots = [data.slot1, data.slot2, data.slot3, data.slot4];
-    const updateData = [name, slots, user];
+    const updateData = { name, slots, user };
+
+    const url = `http://localhost:5000/appointments`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        toast.success("Successfully Add This Products");
+        reset();
+      });
     console.log(updateData);
   };
   return (
