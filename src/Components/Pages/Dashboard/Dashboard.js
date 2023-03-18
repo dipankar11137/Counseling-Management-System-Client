@@ -22,6 +22,14 @@ const Dashboard = () => {
                   to="/dashboard"
                   className="font-bold  text-xl hover:text-orange-600"
                 >
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dashboard/addSlot"
+                  className="font-bold  text-xl hover:text-orange-600"
+                >
                   Add Slots
                 </Link>
               </li>
