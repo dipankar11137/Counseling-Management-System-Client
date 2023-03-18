@@ -11,6 +11,7 @@ import NotFound from "./Components/Share/NotFound";
 import Appointment from "./Components/Pages/Appointment/Appointment/Appointment";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import RequireAuth from "./Components/Login/RequireAUth";
+import AddSlots from "./Components/Pages/Dashboard/AddSlots";
 
 function App() {
   return (
@@ -34,9 +35,9 @@ function App() {
             </RequireAuth>
           }
         >
-          {/* <Route index element={</>} />
-          <Route path="manageItem" element={<ManageItem />} />
-          <Route path="addJobs" element={<AddJobs />} /> */}
+          <Route index element={<AddSlots />} />
+          <Route path="manageItem" element={<AddSlots />} />
+          <Route path="addJobs" element={<AddSlots />} />
         </Route>
         {/* Dashboard End */}
       </Routes>
