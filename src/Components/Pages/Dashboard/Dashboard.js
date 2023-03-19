@@ -35,10 +35,10 @@ const Dashboard = () => {
               </li>
               <li>
                 <Link
-                  to="/dashboard/manageItem"
+                  to="/dashboard/manageCounseling"
                   className="font-bold text-xl hover:text-orange-600"
                 >
-                  Manage Item
+                  Manage Counseling
                 </Link>
               </li>
               <li>

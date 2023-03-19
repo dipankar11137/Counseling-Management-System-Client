@@ -1,26 +1,30 @@
 import { format } from "date-fns";
 import React from "react";
 import { toast } from "react-toastify";
+import User from "../../../Hooks/User";
 
 const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
   const date = format(selectDate, "PP");
   const { name, slots } = counseling;
+  const [user] = User();
 
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
     const slot = form.slot.value;
-    const sName = form.name.value;
-    const email = form.email.value;
+    const problem = form.problem.value;
     const phone = form.phone.value;
 
     const booking = {
       appointmentDate: date,
       slot,
       teacherName: name,
-      studentName: sName,
-      email,
-      phone,
+      studentName: user?.name,
+      studentID: user?.iId,
+      studentsEmail: user?.email,
+      teachersEmail: counseling?.email,
+      phone: phone || user?.phone,
+      problem,
     };
 
     fetch("http://localhost:5000/bookings", {
@@ -51,17 +55,17 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">{name}</h3>
+          <h3 className="text-2xl font-semibold pl-1">{name}</h3>
           <form onSubmit={handleBooking}>
             <input
               type="text"
               value={date}
               placeholder="Type here"
-              className="input input-bordered input-primary w-full max-w-xs mt-6"
+              className="input input-bordered input-primary w-full  mt-6"
             />
             <select
               name="slot"
-              className="select select-bordered select-primary mt-3 w-full max-w-xs"
+              className="select select-bordered select-primary mt-3 w-full "
             >
               {slots.map((slot, i) => (
                 <option value={slot} key={i}>
@@ -69,30 +73,21 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
                 </option>
               ))}
             </select>
-            <input
-              name="name"
-              type="text"
-              placeholder="Your name"
-              className="input input-bordered input-primary w-full max-w-xs mt-2"
-            />
-            <input
-              name="email"
-              type="email"
-              placeholder="Your email"
-              className="input input-bordered input-primary w-full max-w-xs mt-2"
+
+            <textarea
+              name="problem"
+              type="Text"
+              placeholder="Your Problems"
+              className="input input-bordered input-primary pt-1 h-20 w-full  mt-2"
             />
             <input
               name="phone"
               type="phone"
               placeholder="You phone number"
-              className="input input-bordered input-primary w-full max-w-xs mt-2"
+              className="input input-bordered input-primary w-full  mt-2"
             />
 
-            <input
-              className="w-full mt-2 btn max-w-xs"
-              type="submit"
-              value="Submit"
-            />
+            <input className="w-full mt-5 btn " type="submit" value="Submit" />
           </form>
         </div>
       </div>

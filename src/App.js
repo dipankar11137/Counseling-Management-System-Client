@@ -13,6 +13,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import RequireAuth from "./Components/Login/RequireAUth";
 import AddSlots from "./Components/Pages/Dashboard/AddSlots";
 import MyProfile from "./Components/Pages/Dashboard/Profile/MyProfile";
+import ManageCounselings from "./Components/Pages/Dashboard/ManageCounseling/ManageCounselings";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         >
           <Route index element={<MyProfile />} />
           <Route path="addSlot" element={<AddSlots />} />
-          <Route path="addJobs" element={<AddSlots />} />
+          <Route path="manageCounseling" element={<ManageCounselings />} />
         </Route>
         {/* Dashboard End */}
       </Routes>
