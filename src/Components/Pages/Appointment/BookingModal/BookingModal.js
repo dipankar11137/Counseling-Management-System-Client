@@ -24,6 +24,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
       studentsEmail: user?.email,
       teachersEmail: counseling?.email,
       phone: phone || user?.phone,
+      studentImg: user?.image,
       problem,
     };
 
