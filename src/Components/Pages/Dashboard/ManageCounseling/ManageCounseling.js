@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ManageCounseling = ({ counseling }) => {
+const ManageCounseling = ({ counseling, handleRemove }) => {
+  const [action, setAction] = useState(false);
+  console.log(action);
   return (
     <tr>
       <th>
@@ -17,7 +19,24 @@ const ManageCounseling = ({ counseling }) => {
       <td>{counseling?.phone}</td>
       <td>{counseling?.problem}</td>
       <td>
-        <button className="btn btn-sm font-bold">Accept</button>
+        {action ? (
+          <button className="text-blue-800 font-bold text-xl ">Accepted</button>
+        ) : (
+          <button
+            onClick={() => setAction("true")}
+            className=" text-white px-4 py-1 rounded-lg font-bold bg-green-800 uppercase hover:bg-green-600"
+          >
+            Accept
+          </button>
+        )}
+      </td>
+      <td>
+        <button
+          onClick={() => handleRemove(counseling?._id)}
+          className="btn btn-sm"
+        >
+          Remove
+        </button>
       </td>
     </tr>
   );

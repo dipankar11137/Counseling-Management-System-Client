@@ -8,9 +8,12 @@ const ManageCounselings = () => {
       .then((res) => res.json())
       .then((data) => setCounselings(data));
   }, []);
-  console.log(counselings);
+  // console.log(counselings);
+  const handleRemove = (id) => {
+    console.log(id);
+  };
   return (
-    <div>
+    <div className="mx-5 mt-3">
       <table className="table w-full">
         {/* head*/}
         <thead>
@@ -23,6 +26,7 @@ const ManageCounselings = () => {
             <th>Phone</th>
             <th>Problem</th>
             <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +34,7 @@ const ManageCounselings = () => {
             <ManageCounseling
               key={counseling._id}
               counseling={counseling}
+              handleRemove={handleRemove}
             ></ManageCounseling>
           ))}
         </tbody>

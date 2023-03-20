@@ -16,7 +16,19 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side ">
             <label for="dashboard-sidebar" className="drawer-overlay "></label>
-            <ul className="menu p-4 overflow-y-auto w-56 bg-base-100 text-base-content">
+
+            <ul className="menu p-4 overflow-y-auto w-72 bg-base-100 text-base-content">
+              <li>
+                <div className="avatar online">
+                  <div className="w-60 rounded-full">
+                    <img
+                      src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </li>
+              <hr />
               <li>
                 <Link
                   to="/dashboard"
@@ -25,6 +37,7 @@ const Dashboard = () => {
                   Profile
                 </Link>
               </li>
+              <hr />
               <li>
                 <Link
                   to="/dashboard/addSlot"
@@ -33,6 +46,7 @@ const Dashboard = () => {
                   Add Slots
                 </Link>
               </li>
+              <hr />
               <li>
                 <Link
                   to="/dashboard/manageCounseling"
@@ -41,14 +55,16 @@ const Dashboard = () => {
                   Manage Counseling
                 </Link>
               </li>
+              <hr />
               <li>
                 <Link
-                  to="/dashboard/addJobs"
+                  to="/dashboard/manageCounseling"
                   className="font-bold text-xl hover:text-orange-600"
                 >
-                  Job Post
+                  My Applied
                 </Link>
               </li>
+              <hr />
             </ul>
           </div>
         </div>
