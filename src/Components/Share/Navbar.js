@@ -85,7 +85,7 @@ const Navbar = () => {
           className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500"
         >
           <img className="h-12 mr-2" src="" alt="" />
-          Logo/name
+          Counseling Management System
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex lg:pr-36 ml-40">
