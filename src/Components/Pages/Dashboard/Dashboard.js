@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
+import auth from "../../../firebase.init";
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth);
+  const email = user?.email;
+  const [userss, setUsers] = useState([]);
+  const users = userss[0];
+  console.log(users);
+
+  useEffect(() => {
+    if (email) {
+      fetch(`http://localhost:5000/user/${email}`)
+        .then((res) => res.json())
+        .then((data) => setUsers(data));
+    }
+  }, [users]);
   return (
     <div className="bg-slate-100">
       <div>
@@ -38,33 +53,39 @@ const Dashboard = () => {
                 </Link>
               </li>
               <hr />
-              <li>
-                <Link
-                  to="/dashboard/addSlot"
-                  className="font-bold  text-xl hover:text-orange-600"
-                >
-                  Add Slots
-                </Link>
-              </li>
+              {users?.role === "Teacher" && (
+                <li>
+                  <Link
+                    to="/dashboard/addSlot"
+                    className="font-bold  text-xl hover:text-orange-600"
+                  >
+                    Add Slots
+                  </Link>
+                </li>
+              )}
               <hr />
-              <li>
-                <Link
-                  to="/dashboard/manageCounseling"
-                  className="font-bold text-xl hover:text-orange-600"
-                >
-                  Manage Counseling
-                </Link>
-              </li>
+              {users?.role === "Teacher" && (
+                <li>
+                  <Link
+                    to="/dashboard/manageCounseling"
+                    className="font-bold text-xl hover:text-orange-600"
+                  >
+                    Manage Counseling
+                  </Link>
+                </li>
+              )}
               <hr />
-              <li>
-                <Link
-                  to="/dashboard/myApplied"
-                  className="font-bold text-xl hover:text-orange-600"
-                >
-                  My Applied
-                </Link>
-              </li>
-              <hr />
+
+              {users?.role === "Student" && (
+                <li>
+                  <Link
+                    to="/dashboard/myApplied"
+                    className="font-bold text-xl hover:text-orange-600"
+                  >
+                    My Applied
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

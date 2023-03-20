@@ -3,60 +3,48 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { signOut } from "firebase/auth";
-import { FaHome } from "react-icons/fa";
+import { FaBell } from "react-icons/fa";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
   const email = user?.email;
-  const navigate = useNavigate();
   const [booking, setBooking] = useState([]);
+  const [userss, setUsers] = useState([]);
+  const users = userss[0];
+  const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
   };
 
   useEffect(() => {
-    fetch(`https://boxberry.onrender.com/carBooking/${email}`)
+    fetch(`http://localhost:5000/user/${email}`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5000/booking/${email}`)
       .then((res) => res.json())
       .then((data) => setBooking(data));
-  }, [booking]);
+  }, [users]);
 
   const handleBook = () => {
-    navigate("/myOrders");
+    // navigate("/myOrders");
   };
 
   const menuItems = (
     <>
-      <li className="font-bold hover:text-orange-400  text-xl">
-        <Link to="/">
-          <FaHome />
-        </Link>
-      </li>
-      <li className="font-bold hover:text-orange-400">
-        <Link to="/blogs">Blogs</Link>
-      </li>
-      {user && (
+      {users?.role === "Teacher" ? (
+        <></>
+      ) : (
         <li className="font-bold hover:text-orange-400">
-          <Link to="/myOrders">My Orders</Link>
+          <Link to="/appointment">Appointment</Link>
         </li>
       )}
-      <li className="font-bold hover:text-orange-400">
-        <Link to="/showAllReview">Reviews</Link>
-      </li>
-
       {user && (
         <li className="font-bold hover:text-orange-400">
           <Link to="/dashboard">Dashboard</Link>
         </li>
       )}
-      {/* <li className=" font-bold">
-        {user ? (
-          <button className=" font-bold" onClick={logout}>
-            Sign Out
-          </button>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </li> */}
     </>
   );
   return (
@@ -105,34 +93,20 @@ const Navbar = () => {
           className="btn btn-ghost btn-circle mr-3"
         >
           <div className="indicator">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
+            <FaBell className="text-2xl" />
+
             <span className="badge badge-sm indicator-item">
               {booking.length}
             </span>
           </div>
         </label>
         {user ? (
-          <div className="dropdown dropdown-end  mr-5">
+          <div className="dropdown dropdown-end  mr-5 pr-10">
             <label tabindex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                {/* <img src="https://placeimg.com/80/80/people" alt="" /> */}
-                {user.photoURL ? (
-                  <img src={user?.photoURL} alt="" />
+                {users?.image ? (
+                  <img src={users?.image} alt="" />
                 ) : (
-                  // <h1>D</h1>
                   <img
                     src="https://cdn.imgbin.com/6/25/24/imgbin-user-profile-computer-icons-user-interface-mystique-aBhn3R8cmqmP4ECky4DA3V88y.jpg"
                     alt=""
