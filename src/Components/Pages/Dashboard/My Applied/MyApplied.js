@@ -3,18 +3,9 @@ import React from "react";
 const MyApplied = ({ counseling, handleRemove }) => {
   return (
     <tr className="text-center">
-      <th>
-        <div className="avatar">
-          <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src={counseling?.studentImg} alt="img" />
-          </div>
-        </div>
-      </th>
-      <td className="border-r-2">{counseling?.studentName}</td>
-      <td className="border-r-2">{counseling?.studentID}</td>
+      <td className="border-r-2">{counseling?.teacherName}</td>
       <td className="border-r-2">{counseling?.appointmentDate}</td>
       <td className="border-r-2">{counseling?.slot}</td>
-      <td className="border-r-2">{counseling?.phone}</td>
       <td className="border-r-2">{counseling?.problem}</td>
       {/* <td className="border-r-2">
       {action ? (

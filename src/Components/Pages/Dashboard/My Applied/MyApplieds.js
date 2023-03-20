@@ -9,7 +9,8 @@ const MyApplieds = () => {
   const email = users?.email;
   const [counselings, setCounselings] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/studentBooking/${email}`)
+    fetch(`http://localhost:5000/studentBooking/suchoritasona@gmail.com`)
+      // fetch(`http://localhost:5000/studentBooking/${email}`)
       .then((res) => res.json())
       .then((data) => setCounselings(data));
   }, [counselings]);
@@ -36,15 +37,11 @@ const MyApplieds = () => {
           {/* head*/}
           <thead>
             <tr className="text-center">
-              <th></th>
-              <th>Student Name</th>
-              <th>ID</th>
+              <th>Teacher Name</th>
               <th>Date</th>
               <th>Slot</th>
-              <th>Phone</th>
               <th>Problem</th>
               <th>Status</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>

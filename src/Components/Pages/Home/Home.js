@@ -1,11 +1,10 @@
 import React from "react";
-import CheckBoxTest from "../Dashboard/CheckBoxTest";
+import Appointment from "../Appointment/Appointment/Appointment";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
-      <CheckBoxTest />
+      <Appointment />
     </div>
   );
 };

@@ -58,7 +58,7 @@ const Dashboard = () => {
               <hr />
               <li>
                 <Link
-                  to="/dashboard/manageCounseling"
+                  to="/dashboard/myApplied"
                   className="font-bold text-xl hover:text-orange-600"
                 >
                   My Applied

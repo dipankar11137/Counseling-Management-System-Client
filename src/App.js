@@ -14,6 +14,7 @@ import RequireAuth from "./Components/Login/RequireAUth";
 import AddSlots from "./Components/Pages/Dashboard/AddSlots";
 import MyProfile from "./Components/Pages/Dashboard/Profile/MyProfile";
 import ManageCounselings from "./Components/Pages/Dashboard/ManageCounseling/ManageCounselings";
+import MyApplieds from "./Components/Pages/Dashboard/My Applied/MyApplieds";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route index element={<MyProfile />} />
           <Route path="addSlot" element={<AddSlots />} />
           <Route path="manageCounseling" element={<ManageCounselings />} />
+          <Route path="myApplied" element={<MyApplieds />} />
         </Route>
         {/* Dashboard End */}
       </Routes>
