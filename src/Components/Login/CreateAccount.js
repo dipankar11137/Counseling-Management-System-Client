@@ -78,7 +78,7 @@ const CreateAccount = () => {
     // navigate("/");
   };
   return (
-    <div className="flex justify-center  bg-slate-300">
+    <div className="flex justify-center  bg-slate-700">
       <div className="w-4/12 pt-40">
         <img className="w-11/12 rounded-xl" src={login} alt="" />
       </div>

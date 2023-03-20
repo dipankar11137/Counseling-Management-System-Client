@@ -49,9 +49,6 @@ const Login = () => {
 
   return (
     <div className="flex justify-center h-screen bg-slate-700">
-      <div className="w-4/12 pt-40">
-        <img className="w-11/12 rounded-xl" src={login} alt="" />
-      </div>
       <div className="flex justify-center items-center ">
         <div className="card w-96 shadow-2xl bg-violet-50">
           <div className="card-body">
@@ -131,7 +128,7 @@ const Login = () => {
             </form>
             <p>
               <small>
-                New to BoxBerry Motor?{" "}
+                New to Counseling Management?{" "}
                 <Link to="/createAccount" className="text-orange-600 font-bold">
                   Create New Account
                 </Link>
