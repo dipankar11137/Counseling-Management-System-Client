@@ -42,9 +42,11 @@ const Navbar = () => {
       {users?.role === "Teacher" ? (
         <></>
       ) : (
-        <li className="font-bold hover:text-orange-400">
-          <Link to="/appointment">Appointment</Link>
-        </li>
+        user && (
+          <li className="font-bold hover:text-orange-400">
+            <Link to="/appointment">Appointment</Link>
+          </li>
+        )
       )}
       {user && (
         <li className="font-bold hover:text-orange-400">
@@ -131,7 +133,7 @@ const Navbar = () => {
                 <Link to="/">Settings</Link>
               </li>
 
-              <li className=" font-bold">
+              <li className=" font-bold ">
                 {user ? (
                   <button
                     className=" font-bold text-orange-500"
@@ -148,7 +150,9 @@ const Navbar = () => {
         ) : (
           <ul className="mr-5">
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="font-bold text-2xl pr-10 pl-5" to="/login">
+                Login
+              </Link>
             </li>
           </ul>
         )}
