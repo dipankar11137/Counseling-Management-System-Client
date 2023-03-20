@@ -22,9 +22,15 @@ const Navbar = () => {
       .then((data) => setUsers(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${email}`)
-      .then((res) => res.json())
-      .then((data) => setBooking(data));
+    if (users?.role === "Teacher") {
+      fetch(`http://localhost:5000/booking/${email}`)
+        .then((res) => res.json())
+        .then((data) => setBooking(data));
+    } else {
+      fetch(`http://localhost:5000/studentBooking/${email}`)
+        .then((res) => res.json())
+        .then((data) => setBooking(data));
+    }
   }, [users]);
 
   const handleBook = () => {
