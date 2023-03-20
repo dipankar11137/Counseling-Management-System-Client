@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
-import ManageCounseling from "./ManageCounseling";
+import MyApplied from "./MyApplied";
 
-const ManageCounselings = () => {
+const MyApplieds = () => {
   const [users] = useAuthState(auth);
   const email = users?.email;
   const [counselings, setCounselings] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${email}`)
+    fetch(`http://localhost:5000/studentBooking/${email}`)
       .then((res) => res.json())
       .then((data) => setCounselings(data));
   }, [counselings]);
@@ -30,34 +30,36 @@ const ManageCounselings = () => {
     }
   };
   return (
-    <div className="mx-5 mt-3">
-      <table className="table w-full">
-        {/* head*/}
-        <thead>
-          <tr className="text-center">
-            <th></th>
-            <th>Student Name</th>
-            <th>ID</th>
-            <th>Date</th>
-            <th>Slot</th>
-            <th>Phone</th>
-            <th>Problem</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {counselings.map((counseling) => (
-            <ManageCounseling
-              key={counseling._id}
-              counseling={counseling}
-              handleRemove={handleRemove}
-            ></ManageCounseling>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <div className="mx-5 mt-3">
+        <table className="table w-full">
+          {/* head*/}
+          <thead>
+            <tr className="text-center">
+              <th></th>
+              <th>Student Name</th>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Slot</th>
+              <th>Phone</th>
+              <th>Problem</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {counselings.map((counseling) => (
+              <MyApplied
+                key={counseling._id}
+                counseling={counseling}
+                handleRemove={handleRemove}
+              ></MyApplied>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
 
-export default ManageCounselings;
+export default MyApplieds;

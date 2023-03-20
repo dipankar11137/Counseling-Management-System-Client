@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ManageCounseling = ({ counseling, handleRemove }) => {
-  const [action, setAction] = useState(false);
-  console.log(action);
+const MyApplied = ({ counseling, handleRemove }) => {
   return (
     <tr className="text-center">
       <th>
@@ -18,18 +16,18 @@ const ManageCounseling = ({ counseling, handleRemove }) => {
       <td className="border-r-2">{counseling?.slot}</td>
       <td className="border-r-2">{counseling?.phone}</td>
       <td className="border-r-2">{counseling?.problem}</td>
-      <td className="border-r-2">
-        {action ? (
-          <button className="text-blue-800 font-bold text-xl ">Accepted</button>
-        ) : (
-          <button
-            onClick={() => setAction("true")}
-            className=" text-white px-4 py-1 rounded-lg font-bold bg-green-800 uppercase hover:bg-green-600"
-          >
-            Accept
-          </button>
-        )}
-      </td>
+      {/* <td className="border-r-2">
+      {action ? (
+        <button className="text-blue-800 font-bold text-xl ">Accepted</button>
+      ) : (
+        <button
+          onClick={() => setAction("true")}
+          className=" text-white px-4 py-1 rounded-lg font-bold bg-green-800 uppercase hover:bg-green-600"
+        >
+          Accept
+        </button>
+      )}
+    </td> */}
       <td>
         <button
           onClick={() => handleRemove(counseling?._id)}
@@ -42,4 +40,4 @@ const ManageCounseling = ({ counseling, handleRemove }) => {
   );
 };
 
-export default ManageCounseling;
+export default MyApplied;
