@@ -102,14 +102,14 @@ const MyProfile = () => {
               <p className="font-bold w-1/3">Bio</p>
               <span className="w-2/3">: {user?.bio}</span>
             </div>
-            <div className="flex items-baseline justify-between mt-1">
+            {/* <div className="flex items-baseline justify-between mt-1">
               <p className="font-bold w-1/3">Designation </p>
               <span className="w-2/3">: {user?.bio}</span>
             </div>
             <div className="flex items-baseline justify-between mt-1">
               <p className="font-bold w-1/3">Department </p>
               <span className="w-2/3">: {user?.bio}</span>
-            </div>
+            </div> */}
           </div>
           <button
             onClick={() => setEdit(true)}

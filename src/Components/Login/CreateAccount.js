@@ -72,42 +72,34 @@ const CreateAccount = () => {
         toast.success("Updated profile");
         navigate("/");
       });
-
-    // createDBUser(data.name, data.email, data.iId);
-    // toast.success("Updated profile");
-    // navigate("/");
   };
   return (
     <div className="flex justify-center  bg-slate-700">
-      <div className="w-4/12 pt-40">
-        <img className="w-11/12 rounded-xl" src={login} alt="" />
-      </div>
       <div className="flex mt-5 mb-10 justify-center items-center  ">
         <div className="card w-full shadow-xl bg-violet-50">
           <div className="card-body ">
-            <h2 className="text-center text-2xl font-bold">SignUp</h2>
+            <h2 className="text-center text-2xl font-bold mb-2">SignUp </h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Teacher Or student */}
               <select
                 onChange={(e) => setRole(e.target.value)}
-                className="select select-info w-full max-w-xs"
+                className="select select-info w-full  "
               >
                 <option disabled selected>
                   Student
                 </option>
                 <option>Teacher</option>
-                <option>Student</option>
               </select>
               {/* name */}
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full  ">
                 <label className="label">
                   <span className="label-text ">Name</span>
                 </label>
                 <input
                   type="text"
                   placeholder="Your name"
-                  className="input input-bordered bg-white w-full max-w-xs"
+                  className="input input-bordered bg-white w-full  "
                   {...register("name", {
                     required: {
                       value: true,
@@ -124,14 +116,14 @@ const CreateAccount = () => {
                 </label>
               </div>
               {/* Email */}
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full  ">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="input input-bordered bg-white w-full max-w-xs"
+                  className="input input-bordered bg-white w-full  "
                   {...register("email", {
                     required: {
                       value: true,
@@ -158,14 +150,14 @@ const CreateAccount = () => {
               </div>
               {/* Id */}
               {role === "Student" ? (
-                <div className="form-control w-full max-w-xs">
+                <div className="form-control w-full  ">
                   <label className="label">
                     <span className="label-text">Student Id</span>
                   </label>
                   <input
                     type="number"
                     placeholder="Enter Your Student ID"
-                    className="input input-bordered bg-white w-full max-w-xs"
+                    className="input input-bordered bg-white w-full  "
                     {...register("iId", {
                       required: {
                         value: true,
@@ -187,14 +179,14 @@ const CreateAccount = () => {
                   </label>
                 </div>
               ) : (
-                <div className="form-control w-full max-w-xs">
+                <div className="form-control w-full  ">
                   <label className="label">
                     <span className="label-text">Teacher Id</span>
                   </label>
                   <input
                     type="number"
                     placeholder="Enter Your Teachers ID"
-                    className="input input-bordered bg-white w-full max-w-xs"
+                    className="input input-bordered bg-white w-full  "
                     {...register("iId", {
                       required: {
                         value: true,
@@ -241,14 +233,14 @@ const CreateAccount = () => {
                 </label>
               </div>
               {/* password */}
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full  ">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
                   type="password"
                   placeholder="Password"
-                  className="input input-bordered bg-white w-full max-w-xs"
+                  className="input input-bordered bg-white w-full  "
                   {...register("password", {
                     required: {
                       value: true,

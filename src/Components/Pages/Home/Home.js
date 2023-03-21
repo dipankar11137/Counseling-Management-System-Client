@@ -3,8 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Appointment from "../Appointment/Appointment/Appointment";
 import Dashboard from "../Dashboard/Dashboard";
-import MyProfile from "../Dashboard/Profile/MyProfile";
-import ChatBot from "./ChatBot/ChatBot";
 
 const Home = () => {
   const [user] = useAuthState(auth);

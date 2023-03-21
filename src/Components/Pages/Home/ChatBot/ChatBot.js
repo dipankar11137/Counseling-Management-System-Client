@@ -3,7 +3,7 @@ import React from "react";
 const ChatBot = () => {
   return (
     <div>
-      <h1>chatboot</h1>
+      <h1 className="text-black">chatboot</h1>
     </div>
   );
 };
