@@ -35,6 +35,7 @@ const Navbar = () => {
 
   const handleBook = () => {
     // navigate("/myOrders");
+    // navigate("/myOrders");
   };
 
   const menuItems = (
