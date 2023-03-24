@@ -89,6 +89,7 @@ const CreateAccount = () => {
                 <option disabled selected>
                   Student
                 </option>
+                <option>Student</option>
                 <option>Teacher</option>
               </select>
               {/* name */}
