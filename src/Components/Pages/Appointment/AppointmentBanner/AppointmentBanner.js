@@ -13,6 +13,7 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
             className="max-w-sm rounded-lg shadow-2xl"
           />
           <div className="mr-20">
+            {/* Pick This day */}
             <DayPicker
               mode="single"
               selected={selectDate}
