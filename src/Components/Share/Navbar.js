@@ -43,16 +43,12 @@ const Navbar = () => {
       {users?.role === "Teacher" ? (
         <></>
       ) : (
-        user?.role === "Student" && (
+        users?.role === "Student" && (
           <li className="font-bold hover:text-orange-400">
             <Link to="/appointment">Appointment</Link>
           </li>
         )
       )}
-
-      {/* <li className="font-bold hover:text-orange-400">
-        <Link to="/appointment">Appointment</Link>
-      </li> */}
 
       {user && (
         <li className="font-bold hover:text-orange-400">

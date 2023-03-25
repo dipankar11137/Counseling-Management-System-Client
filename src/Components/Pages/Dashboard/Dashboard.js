@@ -8,7 +8,7 @@ const Dashboard = () => {
   const email = user?.email;
   const [userss, setUsers] = useState([]);
   const users = userss[0];
-  console.log(users);
+  // console.log(users);
 
   useEffect(() => {
     if (email) {
@@ -36,7 +36,7 @@ const Dashboard = () => {
               <li>
                 <div className="avatar online">
                   <div className="w-60 rounded-full">
-                    {users.image ? (
+                    {users?.image ? (
                       <img src={users?.image} alt="" />
                     ) : (
                       <img
