@@ -20,7 +20,7 @@ const Navbar = () => {
     fetch(`http://localhost:5000/user/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, []);
+  }, [email]);
   useEffect(() => {
     if (users?.role === "Teacher") {
       fetch(`http://localhost:5000/booking/${email}`)
@@ -31,12 +31,13 @@ const Navbar = () => {
         .then((res) => res.json())
         .then((data) => setBooking(data));
     }
-  }, [users]);
+  }, [users, email]);
 
   const handleBook = () => {
     // navigate("/myOrders");
     // navigate("/myOrders");
   };
+  // console.log(users);
 
   const menuItems = (
     <>

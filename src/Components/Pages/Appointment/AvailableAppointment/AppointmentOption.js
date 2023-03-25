@@ -10,10 +10,14 @@ const AppointmentOption = ({ option, setCounseling }) => {
             style={{ marginTop: "-145px" }}
             className="w-72 ml-5 mb-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
           >
-            <img
-              src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
-              alt=""
-            />
+            {option?.user?.image ? (
+              <img src={option?.user?.image} alt="" />
+            ) : (
+              <img
+                src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
+                alt=""
+              />
+            )}
           </div>
         </div>
 

@@ -74,11 +74,8 @@ const CreateAccount = () => {
         // } else {
         // navigate("/");
 
-        if (user) {
-          navigate(from, { replace: true });
-        } else {
-          navigate("/");
-        }
+        navigate("/");
+
         // }
 
         toast.success("Updated profile");

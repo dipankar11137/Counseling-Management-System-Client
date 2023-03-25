@@ -3,22 +3,18 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../../../firebase.init";
 import { FaEdit } from "react-icons/fa";
-import User from "../../../Hooks/User";
 
 const MyProfile = () => {
   const [edit, setEdit] = useState(false);
   const [authUser] = useAuthState(auth);
   const [users, setUser] = useState([]);
   const user = users[0];
-  //   console.log(user);
-  //   const [user] = User();
-  //   console.log(user?.email);
-  //   console.log(users[0]);
+
   useEffect(() => {
     fetch(`http://localhost:5000/user/${authUser?.email}`)
       .then((res) => res.json())
       .then((data) => setUser(data));
-  }, [user]);
+  }, [authUser?.email]);
   const handleProfileUpdate = (e) => {
     e.preventDefault();
     console.log(e.target.bio.value);
@@ -26,12 +22,9 @@ const MyProfile = () => {
     const birthday = e.target.birthday.value || user.birthday;
     const phone = e.target.phone.value || user.phone;
     const sex = e.target.sex.value || user.sex;
-    // const designation = e.target.name.value || user?.designation;
-    // const department = e.target.department.value || user?.department;
     const bio = e.target.bio.value || user.bio;
     const image = e.target.photo.value || user.photo;
 
-    // console.log(name, birthday, phone, sex, bio, photo);
     const updatedProfile = {
       name,
       birthday,
@@ -39,8 +32,6 @@ const MyProfile = () => {
       sex,
       bio,
       image,
-      //   designation,
-      //   department,
     };
     console.log(updatedProfile);
     fetch(`http://localhost:5000/create-user/${user?.email}`, {
@@ -55,23 +46,15 @@ const MyProfile = () => {
         toast.success("Profile Successfully Updated");
         e.target.reset();
         setEdit(false);
-        // refetch();
       });
   };
   return (
     <div className="w-full md:flex">
       <div className="indicator bg-white rounded  m-4 w-1/3 h-fit  mt-40">
         <div className="-mt-6 ">
-          {/* <img
-                className="mask mask-pentagon indicator-item indicator-center bg-cyan-500 -mt-6 w-40"
-                src={user?.photo || profilePic}
-                alt=""
-              /> */}
-
           <img
             style={{ margin: "-30px" }}
             className=" w-56 h-56 indicator-item indicator-center rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 "
-            // src={user?.photo || profilePic}
             src={user?.image}
             alt=""
           />
@@ -102,14 +85,6 @@ const MyProfile = () => {
               <p className="font-bold w-1/3">Bio</p>
               <span className="w-2/3">: {user?.bio}</span>
             </div>
-            {/* <div className="flex items-baseline justify-between mt-1">
-              <p className="font-bold w-1/3">Designation </p>
-              <span className="w-2/3">: {user?.bio}</span>
-            </div>
-            <div className="flex items-baseline justify-between mt-1">
-              <p className="font-bold w-1/3">Department </p>
-              <span className="w-2/3">: {user?.bio}</span>
-            </div> */}
           </div>
           <button
             onClick={() => setEdit(true)}
@@ -182,31 +157,7 @@ const MyProfile = () => {
                   </select>
                 </div>
               </div>
-              {/* Deg and def */}
-              {/* <div className="flex gap-4 justify-between">
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Bio</span>
-                  </label>
-                  <input
-                    name="bio"
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-sm input-bordered w-full max-w-xs"
-                  />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Date of Birth</span>
-                  </label>
-                  <input
-                    name="birthday"
-                    type="date"
-                    placeholder="Type here"
-                    className="input input-sm input-bordered w-full max-w-xs"
-                  />
-                </div>
-              </div> */}
+
               {/* bio  */}
               <div className="flex gap-4 justify-between mt-4">
                 <div className="form-control w-full">

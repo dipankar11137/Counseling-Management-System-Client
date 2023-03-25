@@ -16,7 +16,7 @@ const Home = () => {
         .then((res) => res.json())
         .then((data) => setUsers(data));
     }
-  }, [users]);
+  }, [email]);
   return (
     <div>{users?.role === "Student" ? <Appointment /> : <Dashboard />}</div>
   );
