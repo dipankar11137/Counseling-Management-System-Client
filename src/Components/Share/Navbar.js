@@ -40,14 +40,12 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      {users?.role === "Teacher" ? (
-        <></>
+      {users?.role === "Student" ? (
+        <li className="font-bold hover:text-orange-400">
+          <Link to="/appointment">Appointment</Link>
+        </li>
       ) : (
-        users?.role === "Student" && (
-          <li className="font-bold hover:text-orange-400">
-            <Link to="/appointment">Appointment</Link>
-          </li>
-        )
+        <></>
       )}
 
       {user && (
@@ -84,13 +82,9 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link
-          to="/"
-          className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500"
-        >
-          <img className="h-12 mr-2" src="" alt="" />
+        <h1 className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500">
           Counseling Management System
-        </Link>
+        </h1>
       </div>
       <div className="navbar-center hidden lg:flex lg:pr-36 ml-40">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
