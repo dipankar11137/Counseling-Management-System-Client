@@ -21,7 +21,7 @@ const Home = () => {
     }
   }, [users]);
   return (
-    <div>{users?.role === "Teacher" ? <Dashboard /> : <Appointment />}</div>
+    <div>{users?.role === "Student" ? <Appointment /> : <Dashboard />}</div>
     // <div>
     //   <Appointment />
     // </div>

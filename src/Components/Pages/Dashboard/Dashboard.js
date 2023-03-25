@@ -36,10 +36,14 @@ const Dashboard = () => {
               <li>
                 <div className="avatar online">
                   <div className="w-60 rounded-full">
-                    <img
-                      src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
-                      alt=""
-                    />
+                    {users.image ? (
+                      <img src={users?.image} alt="" />
+                    ) : (
+                      <img
+                        src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
+                        alt=""
+                      />
+                    )}
                   </div>
                 </div>
               </li>
