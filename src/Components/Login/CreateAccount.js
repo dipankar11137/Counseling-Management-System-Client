@@ -72,7 +72,13 @@ const CreateAccount = () => {
         // if (role === "Teacher") {
         //   navigate("/dashboard");
         // } else {
-        navigate("/");
+        // navigate("/");
+
+        if (user) {
+          navigate(from, { replace: true });
+        } else {
+          navigate("/");
+        }
         // }
 
         toast.success("Updated profile");

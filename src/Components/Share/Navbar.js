@@ -40,19 +40,19 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      {/* {users?.role === "Teacher" ? (
+      {users?.role === "Teacher" ? (
         <></>
       ) : (
-        user && (
+        user?.role === "Student" && (
           <li className="font-bold hover:text-orange-400">
             <Link to="/appointment">Appointment</Link>
           </li>
         )
-      )} */}
+      )}
 
-      <li className="font-bold hover:text-orange-400">
+      {/* <li className="font-bold hover:text-orange-400">
         <Link to="/appointment">Appointment</Link>
-      </li>
+      </li> */}
 
       {user && (
         <li className="font-bold hover:text-orange-400">

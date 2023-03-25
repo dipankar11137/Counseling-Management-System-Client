@@ -12,17 +12,19 @@ const Home = () => {
   console.log(users);
 
   useEffect(() => {
-    if (email) {
-      fetch(`http://localhost:5000/user/${email}`)
-        .then((res) => res.json())
-        .then((data) => setUsers(data));
+    if (users) {
+      if (email) {
+        fetch(`http://localhost:5000/user/${email}`)
+          .then((res) => res.json())
+          .then((data) => setUsers(data));
+      }
     }
   }, [users]);
   return (
-    // <div>{users?.role === "Teacher" ? <Dashboard /> : <Appointment />}</div>
-    <div>
-      <Appointment />
-    </div>
+    <div>{users?.role === "Teacher" ? <Dashboard /> : <Appointment />}</div>
+    // <div>
+    //   <Appointment />
+    // </div>
   );
 };
 
