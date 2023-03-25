@@ -40,7 +40,7 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      {users?.role === "Teacher" ? (
+      {/* {users?.role === "Teacher" ? (
         <></>
       ) : (
         user && (
@@ -48,7 +48,12 @@ const Navbar = () => {
             <Link to="/appointment">Appointment</Link>
           </li>
         )
-      )}
+      )} */}
+
+      <li className="font-bold hover:text-orange-400">
+        <Link to="/appointment">Appointment</Link>
+      </li>
+
       {user && (
         <li className="font-bold hover:text-orange-400">
           <Link to="/dashboard">Dashboard</Link>
