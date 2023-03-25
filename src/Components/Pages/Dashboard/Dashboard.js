@@ -8,7 +8,6 @@ const Dashboard = () => {
   const email = user?.email;
   const [userss, setUsers] = useState([]);
   const users = userss[0];
-  // console.log(users);
 
   useEffect(() => {
     if (email) {
@@ -16,7 +15,7 @@ const Dashboard = () => {
         .then((res) => res.json())
         .then((data) => setUsers(data));
     }
-  }, [users]);
+  }, [email]);
   return (
     <div className="bg-slate-100">
       <div>

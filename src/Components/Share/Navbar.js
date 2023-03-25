@@ -33,12 +33,6 @@ const Navbar = () => {
     }
   }, [users, email]);
 
-  const handleBook = () => {
-    // navigate("/myOrders");
-    // navigate("/myOrders");
-  };
-  // console.log(users);
-
   const menuItems = (
     <>
       {users?.role === "Student" ? (
@@ -92,11 +86,7 @@ const Navbar = () => {
       </div>
       {/* Image */}
       <div className="navbar-end">
-        <label
-          onClick={handleBook}
-          tabindex="0"
-          className="btn btn-ghost btn-circle mr-3"
-        >
+        <label tabindex="0" className="btn btn-ghost btn-circle mr-3">
           <div className="indicator">
             <FaBell className="text-2xl" />
 
