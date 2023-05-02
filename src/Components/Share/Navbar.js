@@ -33,6 +33,10 @@ const Navbar = () => {
     }
   }, [users, email]);
 
+  const handleClick = () => {
+    navigate("/dashboard/myApplied");
+  };
+
   const menuItems = (
     <>
       {users?.role === "Student" ? (
@@ -88,7 +92,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <label tabindex="0" className="btn btn-ghost btn-circle mr-3">
           <div className="indicator">
-            <FaBell className="text-2xl" />
+            <FaBell onClick={handleClick} className="text-2xl" />
 
             <span className="badge badge-sm indicator-item">
               {booking.length}

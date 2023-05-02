@@ -44,7 +44,6 @@ const Login = () => {
   }
   const onSubmit = async (data) => {
     await signInWithEmailAndPassword(data.email, data.password);
-    toast.success("Successfully Login");
   };
 
   return (

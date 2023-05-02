@@ -69,16 +69,8 @@ const CreateAccount = () => {
       .then((imageData) => {
         const image = imageData.data.url;
         createDBUser(data.name, data.email, data.iId, image);
-        // if (role === "Teacher") {
-        //   navigate("/dashboard");
-        // } else {
-        // navigate("/");
 
         navigate("/");
-
-        // }
-
-        toast.success("Updated profile");
       });
   };
   return (
