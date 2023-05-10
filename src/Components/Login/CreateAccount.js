@@ -7,9 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import login from "../../Images/Login/login.jpg";
 
 const CreateAccount = () => {
   const [role, setRole] = useState("Student");
@@ -22,14 +20,12 @@ const CreateAccount = () => {
   } = useForm();
   const imageHostKey = "39899c0cdbfbe66a2dbde3818a91832c";
 
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile] = useUpdateProfile(auth);
   const navigate = useNavigate();
   const location = useLocation();
-
-  let from = location.state?.from?.pathname || "/";
 
   let signInError;
   if (gUser) {

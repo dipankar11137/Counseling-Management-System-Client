@@ -15,7 +15,7 @@ const Dashboard = () => {
         .then((res) => res.json())
         .then((data) => setUsers(data));
     }
-  }, [email]);
+  }, [email, users]);
   return (
     <div className="bg-slate-100">
       <div>

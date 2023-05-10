@@ -20,7 +20,7 @@ const Navbar = () => {
     fetch(`http://localhost:5000/user/${email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data));
-  }, [email]);
+  }, [email, userss]);
   useEffect(() => {
     if (users?.role === "Teacher") {
       fetch(`http://localhost:5000/booking/${email}`)
