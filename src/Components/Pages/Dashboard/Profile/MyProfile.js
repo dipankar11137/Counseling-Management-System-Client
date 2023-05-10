@@ -29,48 +29,78 @@ const MyProfile = () => {
 
   const onSubmit = (data) => {
     const image = data.image[0];
+    console.log(image);
 
-    const formData = new FormData();
-    formData.append("image", image);
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+    if (image) {
+      const formData = new FormData();
+      formData.append("image", image);
+      const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((imageData) => {
+          const UpdateImage = imageData.data.url;
+          const name = data?.name || user.name;
+          const birthday = data?.birthday || user.birthday;
+          const phone = data?.phone || user.phone;
+          const sex = updateSex || user.sex;
+          const bio = data?.bio || user.bio;
+          const image = UpdateImage || user.photo;
+          const updatedProfile = {
+            name,
+            birthday,
+            phone,
+            sex,
+            bio,
+            image,
+          };
+          // console.log(updatedProfile);
+          fetch(`http://localhost:5000/create-user/${user?.email}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(updatedProfile),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              toast.success("Profile Successfully Updated");
+              reset();
+              setEdit(false);
+            });
+        });
+    } else {
+      const name = data?.name || user.name;
+      const birthday = data?.birthday || user.birthday;
+      const phone = data?.phone || user.phone;
+      const sex = updateSex || user.sex;
+      const bio = data?.bio || user.bio;
+      const image = user.photo;
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageData) => {
-        const UpdateImage = imageData.data.url;
-        const name = data?.name || user.name;
-        const birthday = data?.birthday || user.birthday;
-        const phone = data?.phone || user.phone;
-        const sex = updateSex || user.sex;
-        const bio = data?.bio || user.bio;
-        const image = UpdateImage || user.photo;
-
-        const updatedProfile = {
-          name,
-          birthday,
-          phone,
-          sex,
-          bio,
-          image,
-        };
-        // console.log(updatedProfile);
-        fetch(`http://localhost:5000/create-user/${user?.email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedProfile),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            toast.success("Profile Successfully Updated");
-            reset();
-            setEdit(false);
-          });
-      });
+      const updatedProfile = {
+        name,
+        birthday,
+        phone,
+        sex,
+        bio,
+        image,
+      };
+      fetch(`http://localhost:5000/create-user/${user?.email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedProfile),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          toast.success("Profile Successfully Updated");
+          reset();
+          setEdit(false);
+        });
+    }
   };
   return (
     <div className="w-full md:flex">
@@ -201,20 +231,8 @@ const MyProfile = () => {
                 type="file"
                 placeholder="Your Image"
                 className="input input-bordered bg-white w-96 pt-2 sm:w-full   hover:shadow-xl shadow-inner"
-                {...register("image", {
-                  required: {
-                    value: true,
-                    message: "Image is Required",
-                  },
-                })}
+                {...register("image", {})}
               />
-              <label className="label">
-                {errors.image?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors?.image?.message}
-                  </span>
-                )}
-              </label>
             </div>
 
             <input
@@ -223,100 +241,6 @@ const MyProfile = () => {
               value="Update Profile"
             />
           </form>
-
-          {/* <form onSubmit={handleProfileUpdate}>
-            <div className="mt-8">
-              <div className="flex gap-4 justify-between">
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Full Name</span>
-                  </label>
-                  <input
-                    name="name"
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-sm input-bordered w-full max-w-xs"
-                  />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Date of Birth</span>
-                  </label>
-                  <input
-                    name="birthday"
-                    type="date"
-                    placeholder="Type here"
-                    className="input input-sm input-bordered w-full max-w-xs"
-                  />
-                </div>
-              </div>
-          
-              <div className="flex gap-4 justify-between mt-4">
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Contact</span>
-                  </label>
-                  <input
-                    name="phone"
-                    type="text"
-                    placeholder="Type here"
-                    className="input input-sm input-bordered w-full max-w-xs"
-                  />
-                </div>
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Sex</span>
-                  </label>
-                  <select
-                    name="sex"
-                    className="select select-sm select-bordered w-full max-w-xs"
-                  >
-                    <option disabled selected>
-                      {user?.sex}
-                    </option>
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Common</option>
-                  </select>
-                </div>
-              </div>
-
-            
-              <div className="flex gap-4 justify-between mt-4">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Bio</span>
-                  </label>
-                  <textarea
-                    name="bio"
-                    type="text"
-                    placeholder="Type here"
-                    className="textarea textarea-bordered w-full"
-                  />
-                </div>
-              </div>
-           
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Profile Picture Link</span>
-                </label>
-                <input
-                  name="photo"
-                  type="file"
-                  placeholder="Type here"
-                  className="input input-sm input-bordered w-full m-3"
-                />
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                className="btn bg-cyan-500 hover:bg-cyan-600 border-0 my-4"
-              >
-                Update
-              </button>
-            </div>
-          </form> */}
         </div>
       )}
     </div>
@@ -324,38 +248,3 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
-
-// const handleProfileUpdate = (e) => {
-//   e.preventDefault();
-//   console.log(e.target.photo.value);
-
-//   const name = e.target.name.value || user.name;
-//   const birthday = e.target.birthday.value || user.birthday;
-//   const phone = e.target.phone.value || user.phone;
-//   const sex = e.target.sex.value || user.sex;
-//   const bio = e.target.bio.value || user.bio;
-//   const image = e.target.photo.value || user.photo;
-
-//   const updatedProfile = {
-//     name,
-//     birthday,
-//     phone,
-//     sex,
-//     bio,
-//     image,
-//   };
-//   console.log(updatedProfile);
-//   fetch(`http://localhost:5000/create-user/${user?.email}`, {
-//     method: "PUT",
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//     body: JSON.stringify(updatedProfile),
-//   })
-//     .then((res) => res.json())
-//     .then((data) => {
-//       toast.success("Profile Successfully Updated");
-//       e.target.reset();
-//       setEdit(false);
-//     });
-// }
