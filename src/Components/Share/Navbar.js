@@ -31,7 +31,8 @@ const Navbar = () => {
         .then((res) => res.json())
         .then((data) => setBooking(data));
     }
-  }, [users, email]);
+  }, [users, email, booking]);
+  // console.log(booking);
 
   const handleClick = () => {
     navigate("/dashboard/myApplied");
@@ -95,7 +96,7 @@ const Navbar = () => {
             <FaBell onClick={handleClick} className="text-2xl" />
 
             <span className="badge badge-sm indicator-item">
-              {booking.length}
+              {booking?.length}
             </span>
           </div>
         </label>
