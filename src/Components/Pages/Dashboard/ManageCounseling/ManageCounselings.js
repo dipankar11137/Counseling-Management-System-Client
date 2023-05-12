@@ -13,7 +13,8 @@ const ManageCounselings = () => {
       .then((res) => res.json())
       .then((data) => setCounselings(data));
   }, [counselings]);
-  // console.log(counselings);
+
+  console.log(counselings);
   const handleRemove = (id) => {
     const proceed = window.confirm("Are You Sure ?");
     if (proceed) {

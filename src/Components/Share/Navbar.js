@@ -35,7 +35,11 @@ const Navbar = () => {
   // console.log(booking);
 
   const handleClick = () => {
-    navigate("/dashboard/myApplied");
+    if (users?.role === "Teacher") {
+      navigate("/dashboard/manageCounseling");
+    } else {
+      navigate("/dashboard/myApplied");
+    }
   };
 
   const menuItems = (
