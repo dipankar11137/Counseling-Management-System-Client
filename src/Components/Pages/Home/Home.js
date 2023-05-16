@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Appointment from "../Appointment/Appointment/Appointment";
 import Dashboard from "../Dashboard/Dashboard";
+import Name from "./Name";
 
 const Home = () => {
   const [user] = useAuthState(auth);
@@ -25,9 +26,9 @@ const Home = () => {
           <div className="flex justify-center p-4 ">
             <h1
               style={{ boxShadow: "0px 5px 10px blue" }}
-              className="text-8xl uppercase text-center pt-20 font-extrabold items-center rounded-xl"
+              className="text-8xl uppercase text-center pt-28 font-extrabold items-center rounded-xl"
             >
-              Welcome to our web App
+              Welcome to our web App <br /> <Name />
             </h1>
           </div>
           <div className="p-4">
