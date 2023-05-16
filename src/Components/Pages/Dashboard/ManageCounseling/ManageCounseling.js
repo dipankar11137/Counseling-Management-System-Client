@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const ManageCounseling = ({ counseling, handleRemove }) => {
   const [action, setAction] = useState(false);
-  console.log(action);
+  // console.log(action);
   return (
     <tr className="text-center">
       <th>

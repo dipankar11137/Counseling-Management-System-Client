@@ -12,7 +12,7 @@ const MyApplieds = () => {
     fetch(`http://localhost:5000/studentBooking/${email}`)
       .then((res) => res.json())
       .then((data) => setCounselings(data));
-  }, [counselings, email]);
+  }, [counselings]);
   console.log(counselings);
   const handleRemove = (id) => {
     const proceed = window.confirm("Are You Sure ?");
