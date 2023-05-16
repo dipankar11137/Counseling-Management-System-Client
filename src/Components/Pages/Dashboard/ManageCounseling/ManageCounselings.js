@@ -12,7 +12,7 @@ const ManageCounselings = () => {
     fetch(`http://localhost:5000/booking/${email}`)
       .then((res) => res.json())
       .then((data) => setCounselings(data));
-  }, [counselings]);
+  }, [counselings, email]);
 
   console.log(counselings);
   const handleRemove = (id) => {
