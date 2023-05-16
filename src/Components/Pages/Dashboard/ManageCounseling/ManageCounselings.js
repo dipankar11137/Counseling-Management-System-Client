@@ -7,14 +7,14 @@ import ManageCounseling from "./ManageCounseling";
 const ManageCounselings = () => {
   const [users] = useAuthState(auth);
   const email = users?.email;
-  const [manage, setmanage] = useState([]);
+  const [manage, setManage] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${email}`)
+    fetch(`http://localhost:5000/bookings/${email}`)
       .then((res) => res.json())
-      .then((data) => setmanage(data));
-  }, [manage, email, users]);
+      .then((data) => setManage(data));
+  }, [manage, email]);
 
-  console.log(manage);
+  // console.log(email);
   const handleRemove = (id) => {
     const proceed = window.confirm("Are You Sure ?");
     if (proceed) {
@@ -25,7 +25,7 @@ const ManageCounselings = () => {
         .then((res) => res.json())
         .then((data) => {
           const remaining = manage.filter((product) => product._id !== id);
-          setmanage(remaining);
+          setManage(remaining);
           toast.success("Successfully Remove");
         });
     }

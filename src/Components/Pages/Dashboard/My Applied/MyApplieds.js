@@ -9,7 +9,7 @@ const MyApplieds = () => {
   const email = users?.email;
   const [counselings, setCounselings] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/studentBooking/${email}`)
+    fetch(`http://localhost:5000/studentBookings/${email}`)
       .then((res) => res.json())
       .then((data) => setCounselings(data));
   }, [counselings]);
