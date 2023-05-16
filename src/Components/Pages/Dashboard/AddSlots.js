@@ -2,8 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import User from "../../Hooks/User";
+import { useState } from "react";
 
 const AddSlots = () => {
+  const [day, setDay] = useState("");
   const {
     register,
     formState: { errors },
@@ -17,7 +19,7 @@ const AddSlots = () => {
     const name = user?.name;
     const email = user?.email;
     const slots = [data.slot1, data.slot2, data.slot3, data.slot4];
-    const updateData = { name, email, slots, user };
+    const updateData = { name, email, slots, user, day };
 
     const url = `http://localhost:5000/appointments`;
     fetch(url, {
@@ -29,7 +31,7 @@ const AddSlots = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        toast.success("Successfully Add This Products");
+        toast.success("Successfully Add This Slots");
         reset();
       });
     // console.log(updateData);
@@ -47,6 +49,33 @@ const AddSlots = () => {
           <div>
             <label className="label">
               <span className="text-2xl font-semibold">{user?.name}</span>
+            </label>
+            {/* select */}
+            {/* <label className="label">
+              <span className="text-2xl font-semibold">
+                Select Your Off Day
+              </span>
+            </label> */}
+            <select
+              onChange={(e) => setDay(e.target.value)}
+              className=" text-xl font-semibold select select-primary w-full lg:w-96"
+            >
+              <option disabled selected>
+                Select Your Off Day
+              </option>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </select>
+            {/* slots */}
+            <label className="label">
+              <span className="text-2xl font-semibold">
+                Add Slots Time {day}
+              </span>
             </label>
             <input
               type="text"
@@ -102,12 +131,22 @@ const AddSlots = () => {
                 </span>
               )}
             </label>
+            {/* submit */}
 
-            <input
-              className="btn mt-5 w-full text-white"
-              type="submit"
-              value="ADD Slots"
-            />
+            {day ? (
+              <input
+                className="btn mt-5 w-full text-white"
+                type="submit"
+                value="ADD Slots"
+              />
+            ) : (
+              <input
+                className="btn mt-5 w-full text-white"
+                disabled
+                type="submit"
+                value="ADD Slots"
+              />
+            )}
           </div>
         </form>
       </div>
