@@ -5,7 +5,9 @@ import User from "../../Hooks/User";
 import { useState } from "react";
 
 const AddSlots = () => {
-  const [day, setDay] = useState("");
+  const [day1, setDay1] = useState("");
+  const [day2, setDay2] = useState("");
+  const [day3, setDay3] = useState("");
   const {
     register,
     formState: { errors },
@@ -19,7 +21,7 @@ const AddSlots = () => {
     const name = user?.name;
     const email = user?.email;
     const slots = [data.slot1, data.slot2, data.slot3, data.slot4];
-    const updateData = { name, email, slots, user, day };
+    const updateData = { name, email, slots, user, day1, day2, day3 };
 
     const url = `http://localhost:5000/appointments`;
     fetch(url, {
@@ -57,8 +59,43 @@ const AddSlots = () => {
               </span>
             </label> */}
             <select
-              onChange={(e) => setDay(e.target.value)}
+              onChange={(e) => setDay1(e.target.value)}
               className=" text-xl font-semibold select select-primary w-full lg:w-96"
+            >
+              <option disabled selected>
+                Select Your Off Day
+              </option>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </select>
+            <br />
+            {/* select 2 */}
+
+            <select
+              onChange={(e) => setDay2(e.target.value)}
+              className=" text-xl font-semibold select select-primary w-full lg:w-96 mt-3"
+            >
+              <option disabled selected>
+                Select Your Off Day
+              </option>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </select>
+            <br />
+            {/* select 3 */}
+            <select
+              onChange={(e) => setDay3(e.target.value)}
+              className=" text-xl font-semibold select select-primary w-full lg:w-96 mt-3"
             >
               <option disabled selected>
                 Select Your Off Day
@@ -73,9 +110,7 @@ const AddSlots = () => {
             </select>
             {/* slots */}
             <label className="label">
-              <span className="text-2xl font-semibold">
-                Add Slots Time {day}
-              </span>
+              <span className="text-2xl font-semibold">Add Slots Time</span>
             </label>
             <input
               type="text"
@@ -133,7 +168,7 @@ const AddSlots = () => {
             </label>
             {/* submit */}
 
-            {day ? (
+            {day1 && day2 && day3 ? (
               <input
                 className="btn mt-5 w-full text-white"
                 type="submit"

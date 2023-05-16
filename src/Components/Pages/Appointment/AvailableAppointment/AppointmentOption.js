@@ -25,7 +25,10 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
         <h2 className=" text-xl">Designation : Assistant Professor </h2>
         <h2 className="text-xl">Department : Department of CSE </h2>
 
-        {day === option?.day ? (
+        {day === option?.day ||
+        day === option?.day1 ||
+        day === option?.day2 ||
+        day === option?.day3 ? (
           <>
             <h1 className="text-center text-xl font-bold">
               This Day is Off day
