@@ -7,14 +7,14 @@ import ManageCounseling from "./ManageCounseling";
 const ManageCounselings = () => {
   const [users] = useAuthState(auth);
   const email = users?.email;
-  const [counselings, setCounselings] = useState([]);
+  const [manage, setmanage] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/booking/${email}`)
       .then((res) => res.json())
-      .then((data) => setCounselings(data));
-  }, [counselings, email, users]);
+      .then((data) => setmanage(data));
+  }, [manage, email, users]);
 
-  console.log(counselings);
+  console.log(manage);
   const handleRemove = (id) => {
     const proceed = window.confirm("Are You Sure ?");
     if (proceed) {
@@ -24,8 +24,8 @@ const ManageCounselings = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          const remaining = counselings.filter((product) => product._id !== id);
-          setCounselings(remaining);
+          const remaining = manage.filter((product) => product._id !== id);
+          setmanage(remaining);
           toast.success("Successfully Remove");
         });
     }
@@ -48,7 +48,7 @@ const ManageCounselings = () => {
           </tr>
         </thead>
         <tbody>
-          {counselings.map((counseling) => (
+          {manage.map((counseling) => (
             <ManageCounseling
               key={counseling._id}
               counseling={counseling}

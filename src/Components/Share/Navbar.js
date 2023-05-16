@@ -86,9 +86,12 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <h1 className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500">
-          Counseling Management System
-        </h1>
+        <Link to="/">
+          {" "}
+          <h1 className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500">
+            Counseling Management System
+          </h1>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex lg:pr-36 ml-40">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
