@@ -168,7 +168,7 @@ const AddSlots = () => {
             </label>
             {/* submit */}
 
-            {day1 && day2 && day3 ? (
+            {day1 || day2 || day3 ? (
               <input
                 className="btn mt-5 w-full text-white"
                 type="submit"

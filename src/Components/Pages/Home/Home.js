@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import Appointment from "../Appointment/Appointment/Appointment";
-import Dashboard from "../Dashboard/Dashboard";
 import Name from "./Name";
+import Notice from "./Notice";
 
 const Home = () => {
   const [user] = useAuthState(auth);
@@ -20,6 +19,7 @@ const Home = () => {
   }, [email]);
   return (
     <div>
+      <Notice/>
       <div>
         {/* <Name /> */}
         <div className="grid grid-cols-2   ">
