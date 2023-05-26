@@ -3,7 +3,7 @@ import Marquee from 'react-fast-marquee';
 
 const Notice = ({ notice }) => {
   return (
-    <div>
+    <div className="mt-1">
       {notice ? (
         <Marquee className="bg-green-300">
           <h1 className="text-xl text-red-600 mr-10 p-3 font-bold">

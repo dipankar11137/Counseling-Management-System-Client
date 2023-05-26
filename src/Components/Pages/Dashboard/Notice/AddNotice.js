@@ -13,7 +13,7 @@ const AddNotice = () => {
     reset,
   } = useForm();
   const onSubmit = data => {
-    const updateData = { ...data, user: user };
+    const updateData = { ...data, user: user, email: user.email };
 
     const url = `http://localhost:5000/notices`;
     fetch(url, {

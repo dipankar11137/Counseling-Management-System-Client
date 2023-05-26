@@ -11,7 +11,7 @@ const Notices = () => {
   return (
     <div>
       {notices.map(notice => (
-        <Notice key={notice.id} notice={notice}></Notice>
+        <Notice key={notice._id} notice={notice}></Notice>
       ))}
     </div>
   );
