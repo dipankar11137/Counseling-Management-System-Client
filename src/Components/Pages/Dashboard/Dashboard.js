@@ -56,7 +56,7 @@ const Dashboard = () => {
                 </Link>
               </li>
               <hr />
-              {users?.role === "Teacher" && (
+              {users?.role === 'Teacher' && (
                 <li>
                   <Link
                     to="/dashboard/addSlot"
@@ -67,7 +67,7 @@ const Dashboard = () => {
                 </li>
               )}
               <hr />
-              {users?.role === "Teacher" && (
+              {users?.role === 'Teacher' && (
                 <li>
                   <Link
                     to="/dashboard/manageCounseling"
@@ -78,8 +78,30 @@ const Dashboard = () => {
                 </li>
               )}
               <hr />
+              {users?.role === 'Teacher' && (
+                <li>
+                  <Link
+                    to="/dashboard/addNotice"
+                    className="font-bold text-xl hover:text-orange-600"
+                  >
+                    Add Notice
+                  </Link>
+                </li>
+              )}
+              <hr />
+              {users?.role === 'Teacher' && (
+                <li>
+                  <Link
+                    to="/dashboard/manageNotice"
+                    className="font-bold text-xl hover:text-orange-600"
+                  >
+                    Manage Notice
+                  </Link>
+                </li>
+              )}
+              <hr />
 
-              {users?.role === "Student" && (
+              {users?.role === 'Student' && (
                 <li>
                   <Link
                     to="/dashboard/myApplied"

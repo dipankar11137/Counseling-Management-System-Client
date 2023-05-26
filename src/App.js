@@ -10,6 +10,8 @@ import AddSlots from './Components/Pages/Dashboard/AddSlots';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import ManageCounselings from './Components/Pages/Dashboard/ManageCounseling/ManageCounselings';
 import MyApplieds from './Components/Pages/Dashboard/My Applied/MyApplieds';
+import AddNotice from './Components/Pages/Dashboard/Notice/AddNotice';
+import ManageNotices from './Components/Pages/Dashboard/Notice/ManageNotices';
 import MyProfile from './Components/Pages/Dashboard/Profile/MyProfile';
 import Home from "./Components/Pages/Home/Home";
 import Footer from "./Components/Share/Footer";
@@ -49,6 +51,8 @@ function App() {
           <Route path="addSlot" element={<AddSlots />} />
           <Route path="manageCounseling" element={<ManageCounselings />} />
           <Route path="myApplied" element={<MyApplieds />} />
+          <Route path="addNotice" element={<AddNotice />} />
+          <Route path="manageNotice" element={<ManageNotices />} />
         </Route>
         {/* Dashboard End */}
       </Routes>
