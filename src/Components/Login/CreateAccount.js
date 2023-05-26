@@ -1,16 +1,16 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   useCreateUserWithEmailAndPassword,
+  useSignInWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
-} from "react-firebase-hooks/auth";
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import auth from "../../firebase.init";
+} from 'react-firebase-hooks/auth';
+import { useForm } from 'react-hook-form';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const CreateAccount = () => {
-  const [role, setRole] = useState("Student");
+  const [role, setRole] = useState('Student');
   console.log(role);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
@@ -18,10 +18,12 @@ const CreateAccount = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const imageHostKey = "39899c0cdbfbe66a2dbde3818a91832c";
+  const imageHostKey = '39899c0cdbfbe66a2dbde3818a91832c';
 
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   const [updateProfile] = useUpdateProfile(auth);
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ const CreateAccount = () => {
 
   let signInError;
   if (gUser) {
-    navigate("/");
+    navigate('/');
   }
 
   const createDBUser = (name, email, iId, image) => {
@@ -37,36 +39,38 @@ const CreateAccount = () => {
     // console.log(profile);
 
     fetch(`http://localhost:5000/create-user/${email}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(profile),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         // console.log(data);
       });
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     const image = data.image[0];
     createUserWithEmailAndPassword(data.email, data.password);
+    signInWithEmailAndPassword(data.email, data.password);
     updateProfile({ displayName: data.name });
+
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append('image', image);
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`;
 
     fetch(url, {
-      method: "POST",
+      method: 'POST',
       body: formData,
     })
-      .then((res) => res.json())
-      .then((imageData) => {
+      .then(res => res.json())
+      .then(imageData => {
         const image = imageData.data.url;
         createDBUser(data.name, data.email, data.iId, image);
 
-        navigate("/");
+        navigate('/');
       });
   };
   return (
@@ -79,7 +83,7 @@ const CreateAccount = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* Teacher Or student */}
               <select
-                onChange={(e) => setRole(e.target.value)}
+                onChange={e => setRole(e.target.value)}
                 className="select select-info w-full  "
               >
                 <option disabled selected>
@@ -97,15 +101,15 @@ const CreateAccount = () => {
                   type="text"
                   placeholder="Your name"
                   className="input input-bordered bg-white w-full  "
-                  {...register("name", {
+                  {...register('name', {
                     required: {
                       value: true,
-                      message: "Name is Required",
+                      message: 'Name is Required',
                     },
                   })}
                 />
                 <label className="label">
-                  {errors.name?.type === "required" && (
+                  {errors.name?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors.name.message}
                     </span>
@@ -121,24 +125,24 @@ const CreateAccount = () => {
                   type="email"
                   placeholder="Your Email"
                   className="input input-bordered bg-white w-full  "
-                  {...register("email", {
+                  {...register('email', {
                     required: {
                       value: true,
-                      message: "Email is Required",
+                      message: 'Email is Required',
                     },
                     pattern: {
                       value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                      message: "Provide a valid Email",
+                      message: 'Provide a valid Email',
                     },
                   })}
                 />
                 <label className="label">
-                  {errors.email?.type === "required" && (
+                  {errors.email?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors.email.message}
                     </span>
                   )}
-                  {errors.email?.type === "pattern" && (
+                  {errors.email?.type === 'pattern' && (
                     <span className="label-text-alt text-red-500">
                       {errors.email.message}
                     </span>
@@ -146,7 +150,7 @@ const CreateAccount = () => {
                 </label>
               </div>
               {/* Id */}
-              {role === "Student" ? (
+              {role === 'Student' ? (
                 <div className="form-control w-full  ">
                   <label className="label">
                     <span className="label-text">Student Id</span>
@@ -155,20 +159,20 @@ const CreateAccount = () => {
                     type="number"
                     placeholder="Enter Your Student ID"
                     className="input input-bordered bg-white w-full  "
-                    {...register("iId", {
+                    {...register('iId', {
                       required: {
                         value: true,
-                        message: "ID is Required",
+                        message: 'ID is Required',
                       },
                     })}
                   />
                   <label className="label">
-                    {errors.iId?.type === "required" && (
+                    {errors.iId?.type === 'required' && (
                       <span className="label-text-alt text-red-500">
                         {errors.iId.message}
                       </span>
                     )}
-                    {errors.iId?.type === "minLength" && (
+                    {errors.iId?.type === 'minLength' && (
                       <span className="label-text-alt text-red-500">
                         {errors.iId.message}
                       </span>
@@ -184,20 +188,20 @@ const CreateAccount = () => {
                     type="number"
                     placeholder="Enter Your Teachers ID"
                     className="input input-bordered bg-white w-full  "
-                    {...register("iId", {
+                    {...register('iId', {
                       required: {
                         value: true,
-                        message: "ID is Required",
+                        message: 'ID is Required',
                       },
                     })}
                   />
                   <label className="label">
-                    {errors.iId?.type === "required" && (
+                    {errors.iId?.type === 'required' && (
                       <span className="label-text-alt text-red-500">
                         {errors.iId.message}
                       </span>
                     )}
-                    {errors.iId?.type === "minLength" && (
+                    {errors.iId?.type === 'minLength' && (
                       <span className="label-text-alt text-red-500">
                         {errors.iId.message}
                       </span>
@@ -214,15 +218,15 @@ const CreateAccount = () => {
                   type="file"
                   placeholder="Your Image"
                   className="input input-bordered bg-white w-96 pt-2 sm:w-full   hover:shadow-xl shadow-inner"
-                  {...register("image", {
+                  {...register('image', {
                     required: {
                       value: true,
-                      message: "Image is Required",
+                      message: 'Image is Required',
                     },
                   })}
                 />
                 <label className="label">
-                  {errors.image?.type === "required" && (
+                  {errors.image?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors?.image?.message}
                     </span>
@@ -238,20 +242,20 @@ const CreateAccount = () => {
                   type="password"
                   placeholder="Password"
                   className="input input-bordered bg-white w-full  "
-                  {...register("password", {
+                  {...register('password', {
                     required: {
                       value: true,
-                      message: "Password is Required",
+                      message: 'Password is Required',
                     },
                   })}
                 />
                 <label className="label">
-                  {errors.password?.type === "required" && (
+                  {errors.password?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors.password.message}
                     </span>
                   )}
-                  {errors.password?.type === "minLength" && (
+                  {errors.password?.type === 'minLength' && (
                     <span className="label-text-alt text-red-500">
                       {errors.password.message}
                     </span>
@@ -267,7 +271,7 @@ const CreateAccount = () => {
             </form>
             <p>
               <small>
-                Already Have an Account ?{" "}
+                Already Have an Account ?{' '}
                 <Link to="/login" className="text-orange-600 font-bold">
                   Please Login
                 </Link>

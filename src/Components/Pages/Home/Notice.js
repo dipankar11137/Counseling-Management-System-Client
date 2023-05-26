@@ -2,7 +2,7 @@ import React from 'react';
 import Marquee from 'react-fast-marquee';
 
 const Notice = () => {
-  const notice = true;
+  const notice = false;
   return (
     <div>
       {notice ? (
