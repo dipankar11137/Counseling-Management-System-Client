@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import User from '../../../Hooks/User';
 
 const AddNotice = () => {
@@ -12,28 +13,26 @@ const AddNotice = () => {
     reset,
   } = useForm();
   const onSubmit = data => {
-    //  const name = user?.name;
-    //  const email = user?.email;
     const updateData = { ...data, user: user };
 
-    // const url = `http://localhost:5000/appointments`;
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(updateData),
-    // })
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     toast.success('Successfully Add This Slots');
-    //     reset();
-    //   });
-    console.log(updateData);
+    const url = `http://localhost:5000/notices`;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    })
+      .then(res => res.json())
+      .then(result => {
+        toast.success('Successfully Add Notice');
+        reset();
+      });
+    // console.log(updateData);
   };
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-20">
         <div className="shadow-lg mt-5 p-4 bg-white rounded-lg mb-20">
           <form
             className=" flex justify-center gap-4"
@@ -41,16 +40,16 @@ const AddNotice = () => {
           >
             <div>
               <h1 className="text-3xl  text-center font-bold mb-3">
-                Write Complain
+                Write Your Reason For Notice
               </h1>
 
               {/* date */}
               <label className="label">
-                <span className="label-text">Date</span>
+                <span className="label-text text-xl font-bold">Date</span>
               </label>
               <input
                 type="date"
-                className="input input-bordered bg-white  sm:w-full  hover:shadow-xl shadow-inner"
+                className="input input-bordered bg-white  w-full  hover:shadow-xl shadow-inner text-xl"
                 {...register('date', {
                   required: {
                     value: true,
@@ -69,12 +68,12 @@ const AddNotice = () => {
 
               {/* Notice */}
               <label className="label">
-                <span className="label-text">Notice</span>
+                <span className="label-text text-xl font-bold">Notice</span>
               </label>
               <textarea
                 type="textarea"
                 placeholder="Write Your Notice"
-                className="input input-bordered bg-white lg:w-96 h-28 sm:w-full  hover:shadow-xl shadow-inner"
+                className="input input-bordered bg-white  h-28 sm:w-full  hover:shadow-xl shadow-inner text-xl"
                 {...register('notice', {
                   required: {
                     value: true,
