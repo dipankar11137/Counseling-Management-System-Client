@@ -6,8 +6,8 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
   return (
     <header>
       <div className="hero mt-16">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="w-96 overflow-hidden">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-x-14">
+          <div className="w-[500px] overflow-hidden">
             <Notices />
           </div>
           <img

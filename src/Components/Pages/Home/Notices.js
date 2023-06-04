@@ -9,10 +9,16 @@ const Notices = () => {
       .then(data => setNotice(data));
   }, [notices]);
   return (
-    <div>
-      {notices.map((notice, index) => (
-        <Notice key={notice._id} notice={notice} index={index}></Notice>
-      ))}
+    <div className="h-[250px]">
+      {notices.length === 0 ? (
+        <></>
+      ) : (
+        <div className="  overflow-scroll  bg-slate-400">
+          {notices.map((notice, index) => (
+            <Notice key={notice._id} notice={notice} index={index}></Notice>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
