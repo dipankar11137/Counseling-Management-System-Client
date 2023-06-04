@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
   useUpdateProfile,
 } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const CreateAccount = () => {
   const [role, setRole] = useState('Student');
   console.log(role);
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
   const {
     register,
     formState: { errors },
@@ -27,12 +26,8 @@ const CreateAccount = () => {
 
   const [updateProfile] = useUpdateProfile(auth);
   const navigate = useNavigate();
-  const location = useLocation();
 
   let signInError;
-  if (gUser) {
-    navigate('/');
-  }
 
   const createDBUser = (name, email, iId, image) => {
     const profile = { name, email, iId, role, image };

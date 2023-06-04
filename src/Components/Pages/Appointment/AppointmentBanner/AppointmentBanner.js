@@ -1,12 +1,15 @@
 import React from "react";
-import { DayPicker } from "react-day-picker";
-import { format } from "date-fns";
+import { DayPicker } from 'react-day-picker';
+import Notices from '../../Home/Notices';
 
 const AppointmentBanner = ({ selectDate, setSelectDate }) => {
   return (
     <header>
       <div className="hero mt-16">
         <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="w-96 overflow-hidden">
+            <Notices />
+          </div>
           <img
             src="https://media.istockphoto.com/id/1080232656/photo/female-teacher-pointing-with-finger-at-mathematical-equation-on-chalkboard-in-class.jpg?s=612x612&w=0&k=20&c=F3T62Mo1lj0n0vP44gAPDuv52h2ZrB4ggNAFdGnA2M0="
             alt="teacher"

@@ -10,8 +10,8 @@ const Notices = () => {
   }, [notices]);
   return (
     <div>
-      {notices.map(notice => (
-        <Notice key={notice._id} notice={notice}></Notice>
+      {notices.map((notice, index) => (
+        <Notice key={notice._id} notice={notice} index={index}></Notice>
       ))}
     </div>
   );
