@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import Notices from '../../Home/Notices';
+import FinalRoutine from './FinalRoutine';
 
 const AppointmentBanner = ({ selectDate, setSelectDate }) => {
   const today = new Date();
@@ -58,6 +59,9 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
             />
           </div>
         </div>
+      </div>
+      <div className="flex justify-end mr-40">
+        <FinalRoutine />
       </div>
     </header>
   );
