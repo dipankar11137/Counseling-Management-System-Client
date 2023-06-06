@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import Notices from '../../Home/Notices';
@@ -9,21 +9,12 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
   const disabledDates = {
     before: today,
   };
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDayClick = date => {
-    setSelectedDate(date);
-  };
-
-  const disabledDate = {
-    before: new Date(),
-  };
 
   return (
     <header>
-      <div className="hero mt-16">
-        <div className="hero-content flex-col lg:flex-row-reverse gap-x-14">
-          <div className="w-[500px] overflow-hidden">
+      <div className="hero mt-16 ">
+        <div className="hero-content flex-col lg:flex-row-reverse gap-x-4">
+          <div className="w-[700px] overflow-hidden ">
             <Notices />
           </div>
           <img
@@ -37,9 +28,6 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
               mode="single"
               selected={selectDate}
               onSelect={setSelectDate}
-              // disable
-              // disabledDays={{ after: today }}
-              // disabledDays={disabledDate}
               disabledDays={disabledDates}
               className="bg-white rounded-lg shadow p-4"
               inputProps={{ className: 'w-full rounded-lg px-3 py-2' }}
