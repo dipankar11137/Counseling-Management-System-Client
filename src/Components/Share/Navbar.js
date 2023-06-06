@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
-import { signOut } from "firebase/auth";
-import { FaBell } from "react-icons/fa";
+import { signOut } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { FaBell } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -18,33 +18,33 @@ const Navbar = () => {
 
   useEffect(() => {
     fetch(`http://localhost:5000/user/${email}`)
-      .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then(res => res.json())
+      .then(data => setUsers(data));
   }, [email, userss]);
   useEffect(() => {
-    if (users?.role === "Teacher") {
+    if (users?.role === 'Teacher') {
       fetch(`http://localhost:5000/booking/${email}`)
-        .then((res) => res.json())
-        .then((data) => setBooking(data));
+        .then(res => res.json())
+        .then(data => setBooking(data));
     } else {
       fetch(`http://localhost:5000/studentBooking/${email}`)
-        .then((res) => res.json())
-        .then((data) => setBooking(data));
+        .then(res => res.json())
+        .then(data => setBooking(data));
     }
   }, [users, email, booking]);
   // console.log(booking);
 
   const handleClick = () => {
-    if (users?.role === "Teacher") {
-      navigate("/dashboard/manageCounseling");
+    if (users?.role === 'Teacher') {
+      navigate('/dashboard/manageCounseling');
     } else {
-      navigate("/dashboard/myApplied");
+      navigate('/dashboard/myApplied');
     }
   };
 
   const menuItems = (
     <>
-      {users?.role === "Student" ? (
+      {users?.role === 'Student' ? (
         <li className="font-bold hover:text-orange-400">
           <Link to="/appointment">Appointment</Link>
         </li>
@@ -60,7 +60,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="  navbar dark:bg-gray-800 dark:border-gray-700  text-white ">
+    <div className="  navbar bg-gray-800 border-gray-700  text-white ">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -87,7 +87,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/">
-          {" "}
+          {' '}
           <h1 className="btn btn-ghost normal-case font-bold lg:text-3xl  sm:text-sm text-amber-500">
             Counseling Management System
           </h1>
